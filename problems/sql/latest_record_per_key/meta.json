@@ -1,0 +1,15 @@
+{
+  "id": "latest-record-per-key",
+  "title": "Latest Record per Key (CDC Dedupe)",
+  "difficulty": "medium",
+  "order": 1,
+  "tags": ["window", "row_number", "qualify", "cdc", "dedup"],
+  "order_matters": false,
+  "dataset_names": ["Example", "Out-of-order events and re-inserts"],
+  "time_limit_s": 10,
+  "hints": [
+    "ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY updated_at DESC, event_id DESC) numbers each customer's events newest-first.",
+    "Keep rn = 1, then drop rows whose op is 'D'. Filtering 'D' before ranking would resurrect the previous version, which is wrong.",
+    "DuckDB supports QUALIFY so you can filter on the window function without a CTE."
+  ]
+}

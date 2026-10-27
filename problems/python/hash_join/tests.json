@@ -1,0 +1,19 @@
+[
+  {"name": "inner example", "input": {"left": [{"order_id": 1, "cust": 10}, {"order_id": 2, "cust": 20}, {"order_id": 3, "cust": 99}],
+     "right": [{"cust": 10, "name": "Ana"}, {"cust": 20, "name": "Bo"}, {"cust": 20, "name": "Bo (dup)"}], "on": "cust", "how": "inner"},
+   "expected": [{"order_id": 1, "cust": 10, "name": "Ana"}, {"order_id": 2, "cust": 20, "name": "Bo"}, {"order_id": 2, "cust": 20, "name": "Bo (dup)"}]},
+  {"name": "left example", "input": {"left": [{"order_id": 1, "cust": 10}, {"order_id": 2, "cust": 20}, {"order_id": 3, "cust": 99}],
+     "right": [{"cust": 10, "name": "Ana"}, {"cust": 20, "name": "Bo"}, {"cust": 20, "name": "Bo (dup)"}], "on": "cust", "how": "left"},
+   "expected": [{"order_id": 1, "cust": 10, "name": "Ana"}, {"order_id": 2, "cust": 20, "name": "Bo"}, {"order_id": 2, "cust": 20, "name": "Bo (dup)"}, {"order_id": 3, "cust": 99, "name": null}]},
+  {"name": "no matches inner", "input": {"left": [{"k": 1, "a": "x"}], "right": [{"k": 2, "b": "y"}], "on": "k", "how": "inner"}, "expected": []},
+  {"name": "no matches left", "input": {"left": [{"k": 1, "a": "x"}], "right": [{"k": 2, "b": "y", "c": 3}], "on": "k", "how": "left"},
+   "expected": [{"k": 1, "a": "x", "b": null, "c": null}]},
+  {"name": "null keys never match", "input": {"left": [{"k": null, "a": 1}, {"k": 2, "a": 2}], "right": [{"k": null, "b": "n"}, {"k": 2, "b": "two"}], "on": "k", "how": "left"},
+   "expected": [{"k": null, "a": 1, "b": null}, {"k": 2, "a": 2, "b": "two"}]},
+  {"name": "duplicates both sides fan out", "input": {"left": [{"k": 1, "l": "a"}, {"k": 1, "l": "b"}], "right": [{"k": 1, "r": "x"}, {"k": 1, "r": "y"}], "on": "k", "how": "inner"},
+   "expected": [{"k": 1, "l": "a", "r": "x"}, {"k": 1, "l": "a", "r": "y"}, {"k": 1, "l": "b", "r": "x"}, {"k": 1, "l": "b", "r": "y"}]},
+  {"name": "empty right with left join", "input": {"left": [{"k": 1, "a": "x"}, {"k": 2, "a": "y"}], "right": [], "on": "k", "how": "left"},
+   "expected": [{"k": 1, "a": "x"}, {"k": 2, "a": "y"}]},
+  {"name": "string keys and ragged right columns", "input": {"left": [{"id": "a"}, {"id": "b"}, {"id": "c"}], "right": [{"id": "a", "x": 1}, {"id": "b", "y": 2}], "on": "id", "how": "left"},
+   "expected": [{"id": "a", "x": 1}, {"id": "b", "y": 2}, {"id": "c", "x": null, "y": null}]}
+]

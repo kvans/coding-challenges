@@ -1,0 +1,14 @@
+{
+  "id": "sessionize-events",
+  "title": "Sessionize User Events",
+  "difficulty": "medium",
+  "order": 3,
+  "tags": ["sorting", "grouping", "datetime", "sessions"],
+  "function_name": "sessionize",
+  "time_limit_s": 5,
+  "hints": [
+    "Group events by user, then sort each user's timestamps. Everything else is a linear scan per user.",
+    "Parse timestamps with datetime.strptime and compare differences against timedelta(minutes=gap_minutes).",
+    "A gap of exactly gap_minutes does NOT start a new session; only a strictly larger gap does."
+  ]
+}

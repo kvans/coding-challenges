@@ -1,0 +1,14 @@
+{
+  "id": "top-k-frequent",
+  "title": "Top K Frequent Elements",
+  "difficulty": "medium",
+  "order": 2,
+  "tags": ["heap", "hashmap", "counter", "classic"],
+  "function_name": "top_k_frequent",
+  "time_limit_s": 5,
+  "hints": [
+    "Count first (dict or collections.Counter). The rest is selecting k keys by count.",
+    "Sorting all distinct values is O(m log m). A heap of size k gives O(m log k), and bucket sort by count gives O(m).",
+    "Ties must be broken by the smaller value first. Sort key: (-count, value)."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "scd2-point-in-time-join",
+  "title": "SCD Type 2 Point-in-Time Join",
+  "difficulty": "hard",
+  "order": 2,
+  "tags": ["scd", "range-join", "dimensional-modeling", "left-join"],
+  "order_matters": false,
+  "dataset_names": ["Example", "Three versions and boundary dates"],
+  "time_limit_s": 10,
+  "hints": [
+    "This is a range join: match the dimension version whose validity window contains the order date.",
+    "Half-open windows: valid_from <= order_date AND order_date < valid_to. The current version has valid_to = NULL, so OR valid_to IS NULL.",
+    "LEFT JOIN from the fact table so orders with no matching version (before the first version, or unknown customer) still appear with a NULL tier."
+  ]
+}

@@ -1,0 +1,9 @@
+[
+  {"name": "example 1", "input": {"nums": [1, 1, 1, 2, 2, 3], "k": 2}, "expected": [1, 2]},
+  {"name": "tie broken by smaller value", "input": {"nums": [4, 4, 7, 7, 1], "k": 2}, "expected": [4, 7]},
+  {"name": "single element", "input": {"nums": [5], "k": 1}, "expected": [5]},
+  {"name": "k equals distinct count", "input": {"nums": [3, 1, 2, 2, 3, 3], "k": 3}, "expected": [3, 2, 1]},
+  {"name": "all same frequency", "input": {"nums": [9, 8, 7, 6], "k": 2}, "expected": [6, 7]},
+  {"name": "negatives", "input": {"nums": [-1, -1, -2, -2, -2, 0], "k": 2}, "expected": [-2, -1]},
+  {"name": "larger input", "input": {"nums": [5, 3, 5, 3, 5, 3, 1, 1, 1, 2, 2, 8, 8, 8, 8, 9, 9, 9, 9, 0], "k": 3}, "expected": [8, 9, 1]}
+]

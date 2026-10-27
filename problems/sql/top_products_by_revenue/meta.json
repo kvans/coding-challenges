@@ -1,0 +1,15 @@
+{
+  "id": "top-products-by-revenue",
+  "title": "Top 3 Products by Revenue",
+  "difficulty": "easy",
+  "order": 2,
+  "tags": ["join", "aggregation", "ordering", "limit"],
+  "order_matters": true,
+  "dataset_names": ["Example", "Ties and unsold products"],
+  "time_limit_s": 10,
+  "hints": [
+    "Revenue per line item is quantity * unit_price; aggregate it per product before ranking.",
+    "Join order_items to products to get the name, then GROUP BY product_id and name.",
+    "ORDER BY revenue DESC, product_id ASC, then LIMIT 3. The secondary sort key is what makes ties deterministic."
+  ]
+}

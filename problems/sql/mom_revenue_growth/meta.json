@@ -1,0 +1,15 @@
+{
+  "id": "mom-revenue-growth",
+  "title": "Month-over-Month Revenue Growth",
+  "difficulty": "medium",
+  "order": 2,
+  "tags": ["window", "lag", "dates", "null-handling"],
+  "order_matters": false,
+  "dataset_names": ["Example", "Missing month and zero revenue"],
+  "time_limit_s": 10,
+  "hints": [
+    "Aggregate first: revenue per date_trunc('month', order_date) for completed orders only.",
+    "LAG(revenue) OVER (ORDER BY month) gives the previous row, which is NOT necessarily the previous calendar month when a month has no orders. Also LAG the month itself and compare.",
+    "Guard the division: when the previous month's revenue is 0 (or missing) the growth is NULL."
+  ]
+}

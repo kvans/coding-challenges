@@ -1,0 +1,15 @@
+[
+  {"name": "example", "input": {"obj": {"id": 1, "user": {"name": "Ana", "address": {"city": "Lisbon"}}, "tags": ["a", "b"]}},
+   "expected": {"id": 1, "user.name": "Ana", "user.address.city": "Lisbon", "tags.0": "a", "tags.1": "b"}},
+  {"name": "already flat", "input": {"obj": {"a": 1, "b": "x", "c": null, "d": true}},
+   "expected": {"a": 1, "b": "x", "c": null, "d": true}},
+  {"name": "list of dicts", "input": {"obj": {"items": [{"sku": "A", "qty": 2}, {"sku": "B", "qty": 1}]}},
+   "expected": {"items.0.sku": "A", "items.0.qty": 2, "items.1.sku": "B", "items.1.qty": 1}},
+  {"name": "empty containers are leaves", "input": {"obj": {"meta": {}, "list": [], "n": {"deep": {"empty": {}}}}},
+   "expected": {"meta": {}, "list": [], "n.deep.empty": {}}},
+  {"name": "custom separator", "input": {"obj": {"a": {"b": {"c": 1}}, "x": [10, 20]}, "sep": "_"},
+   "expected": {"a_b_c": 1, "x_0": 10, "x_1": 20}},
+  {"name": "deep nesting and none", "input": {"obj": {"l1": {"l2": {"l3": {"l4": {"v": null, "w": 0.5}}}}, "flag": false}},
+   "expected": {"l1.l2.l3.l4.v": null, "l1.l2.l3.l4.w": 0.5, "flag": false}},
+  {"name": "empty object", "input": {"obj": {}}, "expected": {}}
+]

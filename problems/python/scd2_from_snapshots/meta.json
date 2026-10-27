@@ -1,0 +1,14 @@
+{
+  "id": "scd2-from-snapshots",
+  "title": "Build SCD Type 2 History from Snapshots",
+  "difficulty": "hard",
+  "order": 2,
+  "tags": ["scd", "dimensional-modeling", "dict", "dates"],
+  "function_name": "build_scd2",
+  "time_limit_s": 5,
+  "hints": [
+    "Process snapshots in date order. For each customer keep the list of versions built so far; compare the incoming attributes with the latest version's attributes.",
+    "When attributes differ, close the open version (valid_to = this snapshot_date, is_current = False) and open a new one starting on this snapshot_date.",
+    "The tracked attributes are every column except snapshot_date and customer_id; compare them as a dict so the code works for any attribute set."
+  ]
+}

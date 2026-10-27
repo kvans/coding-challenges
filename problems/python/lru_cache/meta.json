@@ -1,0 +1,15 @@
+{
+  "id": "lru-cache",
+  "title": "LRU Cache",
+  "difficulty": "medium",
+  "order": 5,
+  "tags": ["design", "hashmap", "linked-list", "classic"],
+  "kind": "class",
+  "class_name": "LRUCache",
+  "time_limit_s": 5,
+  "hints": [
+    "You need O(1) lookup (hash map) and O(1) 'move to most recent' plus 'evict least recent' (doubly linked list).",
+    "collections.OrderedDict gives you both: move_to_end(key) on access, popitem(last=False) to evict.",
+    "Both get and put count as 'use'. Updating an existing key must also move it to most-recently-used."
+  ]
+}

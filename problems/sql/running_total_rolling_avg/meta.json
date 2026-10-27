@@ -1,0 +1,15 @@
+{
+  "id": "running-total-rolling-avg",
+  "title": "Running Total and 7-Day Rolling Average",
+  "difficulty": "medium",
+  "order": 3,
+  "tags": ["window", "frames", "rolling", "dates"],
+  "order_matters": true,
+  "dataset_names": ["Example (10 days)", "Zero days and cents (14 days)"],
+  "time_limit_s": 10,
+  "hints": [
+    "Both metrics are window aggregates over ORDER BY sale_date; the difference is the frame.",
+    "Running total: ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW. Rolling 7-day: ROWS BETWEEN 6 PRECEDING AND CURRENT ROW.",
+    "For the first six days the frame simply contains fewer rows; AVG divides by the rows that exist. Round to 2 decimals."
+  ]
+}

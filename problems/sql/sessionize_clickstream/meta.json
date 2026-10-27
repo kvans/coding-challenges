@@ -1,0 +1,15 @@
+{
+  "id": "sessionize-clickstream-sql",
+  "title": "Sessionize a Clickstream in SQL",
+  "difficulty": "hard",
+  "order": 3,
+  "tags": ["window", "lag", "cumulative-sum", "sessions", "gaps-and-islands"],
+  "order_matters": false,
+  "dataset_names": ["Example", "Exact 30-minute gaps and interleaved users"],
+  "time_limit_s": 10,
+  "hints": [
+    "LAG(click_ts) OVER (PARTITION BY user_id ORDER BY click_ts) gives the previous click; a NULL (first click) or a gap > 30 minutes marks a new session.",
+    "A running SUM of that 0/1 flag, ordered by click_ts within the user, numbers the sessions 1, 2, 3, ...",
+    "Group by user_id and session_id for MIN, MAX and COUNT. A gap of exactly 30 minutes stays in the same session."
+  ]
+}

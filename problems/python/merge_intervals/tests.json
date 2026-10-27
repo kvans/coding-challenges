@@ -1,0 +1,10 @@
+[
+  {"name": "example 1", "input": {"intervals": [[1, 3], [2, 6], [8, 10], [15, 18]]}, "expected": [[1, 6], [8, 10], [15, 18]]},
+  {"name": "touching", "input": {"intervals": [[1, 4], [4, 5]]}, "expected": [[1, 5]]},
+  {"name": "unsorted input", "input": {"intervals": [[9, 12], [1, 2], [3, 8], [2, 3], [20, 21]]}, "expected": [[1, 8], [9, 12], [20, 21]]},
+  {"name": "containment", "input": {"intervals": [[1, 10], [2, 3], [4, 5], [11, 12]]}, "expected": [[1, 10], [11, 12]]},
+  {"name": "single", "input": {"intervals": [[5, 5]]}, "expected": [[5, 5]]},
+  {"name": "empty", "input": {"intervals": []}, "expected": []},
+  {"name": "all overlap", "input": {"intervals": [[1, 4], [0, 4], [2, 9], [3, 3]]}, "expected": [[0, 9]]},
+  {"name": "negative values", "input": {"intervals": [[-5, -3], [-4, 0], [1, 2]]}, "expected": [[-5, 0], [1, 2]]}
+]

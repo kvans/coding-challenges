@@ -1,0 +1,50 @@
+[
+  {"name": "example", "input": {"snapshots": [
+      {"snapshot_date": "2024-01-01", "customer_id": 1, "plan": "free", "country": "PT"},
+      {"snapshot_date": "2024-01-02", "customer_id": 1, "plan": "free", "country": "PT"},
+      {"snapshot_date": "2024-01-03", "customer_id": 1, "plan": "pro", "country": "PT"}]},
+   "expected": [
+      {"customer_id": 1, "plan": "free", "country": "PT", "valid_from": "2024-01-01", "valid_to": "2024-01-03", "is_current": false},
+      {"customer_id": 1, "plan": "pro", "country": "PT", "valid_from": "2024-01-03", "valid_to": null, "is_current": true}]},
+  {"name": "no changes", "input": {"snapshots": [
+      {"snapshot_date": "2024-01-01", "customer_id": 7, "plan": "free"},
+      {"snapshot_date": "2024-01-02", "customer_id": 7, "plan": "free"},
+      {"snapshot_date": "2024-01-03", "customer_id": 7, "plan": "free"}]},
+   "expected": [{"customer_id": 7, "plan": "free", "valid_from": "2024-01-01", "valid_to": null, "is_current": true}]},
+  {"name": "change and revert", "input": {"snapshots": [
+      {"snapshot_date": "2024-01-01", "customer_id": 1, "plan": "free"},
+      {"snapshot_date": "2024-01-02", "customer_id": 1, "plan": "pro"},
+      {"snapshot_date": "2024-01-03", "customer_id": 1, "plan": "free"}]},
+   "expected": [
+      {"customer_id": 1, "plan": "free", "valid_from": "2024-01-01", "valid_to": "2024-01-02", "is_current": false},
+      {"customer_id": 1, "plan": "pro", "valid_from": "2024-01-02", "valid_to": "2024-01-03", "is_current": false},
+      {"customer_id": 1, "plan": "free", "valid_from": "2024-01-03", "valid_to": null, "is_current": true}]},
+  {"name": "customer appears later and unsorted input", "input": {"snapshots": [
+      {"snapshot_date": "2024-01-03", "customer_id": 2, "plan": "pro"},
+      {"snapshot_date": "2024-01-01", "customer_id": 1, "plan": "free"},
+      {"snapshot_date": "2024-01-03", "customer_id": 1, "plan": "free"},
+      {"snapshot_date": "2024-01-02", "customer_id": 1, "plan": "free"},
+      {"snapshot_date": "2024-01-04", "customer_id": 2, "plan": "enterprise"},
+      {"snapshot_date": "2024-01-04", "customer_id": 1, "plan": "free"}]},
+   "expected": [
+      {"customer_id": 1, "plan": "free", "valid_from": "2024-01-01", "valid_to": null, "is_current": true},
+      {"customer_id": 2, "plan": "pro", "valid_from": "2024-01-03", "valid_to": "2024-01-04", "is_current": false},
+      {"customer_id": 2, "plan": "enterprise", "valid_from": "2024-01-04", "valid_to": null, "is_current": true}]},
+  {"name": "two attributes change on different days", "input": {"snapshots": [
+      {"snapshot_date": "2024-02-01", "customer_id": 5, "plan": "free", "country": "US"},
+      {"snapshot_date": "2024-02-02", "customer_id": 5, "plan": "free", "country": "CA"},
+      {"snapshot_date": "2024-02-03", "customer_id": 5, "plan": "pro", "country": "CA"},
+      {"snapshot_date": "2024-02-04", "customer_id": 5, "plan": "pro", "country": "CA"}]},
+   "expected": [
+      {"customer_id": 5, "plan": "free", "country": "US", "valid_from": "2024-02-01", "valid_to": "2024-02-02", "is_current": false},
+      {"customer_id": 5, "plan": "free", "country": "CA", "valid_from": "2024-02-02", "valid_to": "2024-02-03", "is_current": false},
+      {"customer_id": 5, "plan": "pro", "country": "CA", "valid_from": "2024-02-03", "valid_to": null, "is_current": true}]},
+  {"name": "null attribute values are compared too", "input": {"snapshots": [
+      {"snapshot_date": "2024-03-01", "customer_id": 9, "phone": null},
+      {"snapshot_date": "2024-03-02", "customer_id": 9, "phone": "123"},
+      {"snapshot_date": "2024-03-03", "customer_id": 9, "phone": "123"}]},
+   "expected": [
+      {"customer_id": 9, "phone": null, "valid_from": "2024-03-01", "valid_to": "2024-03-02", "is_current": false},
+      {"customer_id": 9, "phone": "123", "valid_from": "2024-03-02", "valid_to": null, "is_current": true}]},
+  {"name": "empty", "input": {"snapshots": []}, "expected": []}
+]

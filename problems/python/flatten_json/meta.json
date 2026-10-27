@@ -1,0 +1,14 @@
+{
+  "id": "flatten-json",
+  "title": "Flatten Nested JSON",
+  "difficulty": "easy",
+  "order": 4,
+  "tags": ["recursion", "dict", "json", "schema"],
+  "function_name": "flatten_json",
+  "time_limit_s": 5,
+  "hints": [
+    "Recurse with a prefix string. When you hit a dict, recurse into each key; when you hit a list, recurse into each index.",
+    "A scalar (or an empty dict/list) is a leaf: write it to the output under the current prefix.",
+    "Build the prefix as `parent + sep + child` only when the parent prefix is non-empty, so top-level keys have no leading separator."
+  ]
+}

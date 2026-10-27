@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DE Interview Practice</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">DE</span>
+      <span class="brand-text">Interview Practice</span>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="topbar-actions">
+      <button id="btn-random" class="btn btn-accent" title="Open a random unsolved problem (respects language and difficulty filters)">Random unsolved</button>
+    </div>
+  </header>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="filters">
+        <input id="f-search" type="search" placeholder="Search title or tag...">
+        <div class="filter-row">
+          <select id="f-language">
+            <option value="">All languages</option>
+            <option value="python">Python</option>
+            <option value="sql">SQL</option>
+          </select>
+          <select id="f-difficulty">
+            <option value="">All levels</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div class="filter-row">
+          <select id="f-status">
+            <option value="">Any status</option>
+            <option value="unsolved">Unsolved</option>
+            <option value="attempted">Attempted</option>
+            <option value="solved">Solved</option>
+          </select>
+          <select id="f-tag">
+            <option value="">All tags</option>
+          </select>
+        </div>
+      </div>
+      <ul id="problem-list" class="problem-list"></ul>
+    </aside>
+
+    <section class="panel problem-panel" id="problem-panel">
+      <div class="empty" id="problem-empty">Pick a problem on the left, or hit <b>Random unsolved</b>.</div>
+      <div class="problem-content hidden" id="problem-content">
+        <div class="problem-head">
+          <div class="problem-title-row">
+            <h1 id="p-title"></h1>
+            <span id="p-status" class="status-pill"></span>
+          </div>
+          <div class="problem-meta">
+            <span id="p-difficulty" class="diff-pill"></span>
+            <span id="p-language" class="lang-pill"></span>
+            <span id="p-tags" class="tags"></span>
+          </div>
+          <div class="timer-row">
+            <span class="timer" id="timer">00:00</span>
+            <button id="btn-timer-toggle" class="btn btn-small">Pause</button>
+            <button id="btn-timer-reset" class="btn btn-small">Reset timer</button>
+            <span class="spacer"></span>
+            <button id="btn-reset-progress" class="btn btn-small btn-danger" title="Forget submissions, draft and solved status for this problem">Reset progress</button>
+          </div>
+        </div>
+        <nav class="tabs">
+          <button class="tab active" data-tab="description">Description</button>
+          <button class="tab" data-tab="hints">Hints</button>
+          <button class="tab" data-tab="solution">Solution</button>
+          <button class="tab" data-tab="submissions">Submissions</button>
+        </nav>
+        <div class="tab-body">
+          <div class="tab-pane active markdown" id="tab-description"></div>
+          <div class="tab-pane" id="tab-hints"></div>
+          <div class="tab-pane" id="tab-solution"></div>
+          <div class="tab-pane" id="tab-submissions"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel work-panel">
+      <div class="toolbar">
+        <span id="editor-lang" class="lang-pill">-</span>
+        <span class="toolbar-hint">Ctrl+Enter to run</span>
+        <span class="spacer"></span>
+        <button id="btn-reset-code" class="btn btn-small">Reset code</button>
+        <button id="btn-run" class="btn btn-primary" disabled>Run tests</button>
+      </div>
+      <div class="editor-wrap">
+        <textarea id="editor" spellcheck="false"></textarea>
+      </div>
+      <div class="results" id="results">
+        <div class="results-placeholder">Results show up here after you run the tests.</div>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/comment/comment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

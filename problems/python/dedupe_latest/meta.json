@@ -1,0 +1,14 @@
+{
+  "id": "dedupe-latest",
+  "title": "Dedupe Records, Keep Latest",
+  "difficulty": "easy",
+  "order": 3,
+  "tags": ["dict", "sorting", "dedup", "cdc"],
+  "function_name": "dedupe_latest",
+  "time_limit_s": 5,
+  "hints": [
+    "One pass with a dict keyed by the business key is enough. Decide for each incoming record whether it beats the one already stored.",
+    "Timestamps are ISO-8601 strings with a fixed format, so plain string comparison orders them correctly.",
+    "Ties: a later record in the input should replace an earlier one, so compare with >= rather than >."
+  ]
+}

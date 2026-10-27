@@ -1,0 +1,15 @@
+{
+  "id": "weekly-cohort-retention",
+  "title": "Weekly Cohort Retention",
+  "difficulty": "hard",
+  "order": 1,
+  "tags": ["cohort", "retention", "dates", "join", "conditional-aggregation"],
+  "order_matters": false,
+  "dataset_names": ["Example", "Pre-signup activity, inactive users, Sunday signups"],
+  "time_limit_s": 10,
+  "hints": [
+    "Assign each user a cohort_week = date_trunc('week', signup_date) and compute each cohort's size separately (users with zero activity still count in the size).",
+    "Join activity to the user's cohort and compute week_number = (date_trunc('week', activity_date) - cohort_week) / 7 using integer division; drop negative week numbers.",
+    "COUNT(DISTINCT user_id) per (cohort_week, week_number) so several activities in the same week count once; divide by cohort size for the percentage."
+  ]
+}

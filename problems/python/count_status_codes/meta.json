@@ -1,0 +1,14 @@
+{
+  "id": "count-status-codes",
+  "title": "Count HTTP Status Codes",
+  "difficulty": "easy",
+  "order": 2,
+  "tags": ["string", "parsing", "dict", "logs"],
+  "function_name": "count_status_codes",
+  "time_limit_s": 5,
+  "hints": [
+    "The request is always wrapped in double quotes. Splitting on the quote character isolates what comes after it.",
+    "After the closing quote, the first whitespace-separated token is the status code. Validate it before counting.",
+    "Malformed lines are normal in real logs. Skip them instead of crashing."
+  ]
+}

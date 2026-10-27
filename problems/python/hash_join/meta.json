@@ -1,0 +1,14 @@
+{
+  "id": "hash-join",
+  "title": "In-Memory Hash Join",
+  "difficulty": "medium",
+  "order": 4,
+  "tags": ["hashmap", "join", "sql-semantics"],
+  "function_name": "hash_join",
+  "time_limit_s": 5,
+  "hints": [
+    "Build phase: index the right side in a dict key -> list of rows (a list, because keys can repeat). Probe phase: walk the left side in order.",
+    "A left row that matches several right rows produces several output rows (cross product), exactly like SQL.",
+    "SQL semantics: NULL never equals NULL. A None key must not match anything; with how='left' it still produces one row padded with None."
+  ]
+}

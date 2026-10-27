@@ -1,0 +1,47 @@
+[
+  {"name": "example", "input": {"events": [
+      {"user_id": 1, "ts": "2024-06-01 10:00:00"},
+      {"user_id": 1, "ts": "2024-06-01 10:20:00"},
+      {"user_id": 1, "ts": "2024-06-01 11:30:00"},
+      {"user_id": 2, "ts": "2024-06-01 09:00:00"}], "gap_minutes": 30},
+   "expected": [
+      {"user_id": 1, "session_id": 1, "start": "2024-06-01 10:00:00", "end": "2024-06-01 10:20:00", "events": 2},
+      {"user_id": 1, "session_id": 2, "start": "2024-06-01 11:30:00", "end": "2024-06-01 11:30:00", "events": 1},
+      {"user_id": 2, "session_id": 1, "start": "2024-06-01 09:00:00", "end": "2024-06-01 09:00:00", "events": 1}]},
+  {"name": "exactly at the gap stays in session", "input": {"events": [
+      {"user_id": 5, "ts": "2024-01-01 00:00:00"},
+      {"user_id": 5, "ts": "2024-01-01 00:30:00"},
+      {"user_id": 5, "ts": "2024-01-01 01:00:01"}], "gap_minutes": 30},
+   "expected": [
+      {"user_id": 5, "session_id": 1, "start": "2024-01-01 00:00:00", "end": "2024-01-01 00:30:00", "events": 2},
+      {"user_id": 5, "session_id": 2, "start": "2024-01-01 01:00:01", "end": "2024-01-01 01:00:01", "events": 1}]},
+  {"name": "unsorted and interleaved users", "input": {"events": [
+      {"user_id": 2, "ts": "2024-02-02 12:10:00"},
+      {"user_id": 1, "ts": "2024-02-02 12:05:00"},
+      {"user_id": 2, "ts": "2024-02-02 12:00:00"},
+      {"user_id": 1, "ts": "2024-02-02 12:00:00"},
+      {"user_id": 1, "ts": "2024-02-02 13:00:00"},
+      {"user_id": 2, "ts": "2024-02-02 12:35:00"}], "gap_minutes": 30},
+   "expected": [
+      {"user_id": 1, "session_id": 1, "start": "2024-02-02 12:00:00", "end": "2024-02-02 12:05:00", "events": 2},
+      {"user_id": 1, "session_id": 2, "start": "2024-02-02 13:00:00", "end": "2024-02-02 13:00:00", "events": 1},
+      {"user_id": 2, "session_id": 1, "start": "2024-02-02 12:00:00", "end": "2024-02-02 12:35:00", "events": 3}]},
+  {"name": "custom gap of 5 minutes", "input": {"events": [
+      {"user_id": 9, "ts": "2024-03-03 08:00:00"},
+      {"user_id": 9, "ts": "2024-03-03 08:04:59"},
+      {"user_id": 9, "ts": "2024-03-03 08:10:00"},
+      {"user_id": 9, "ts": "2024-03-03 08:14:00"},
+      {"user_id": 9, "ts": "2024-03-03 08:20:00"}], "gap_minutes": 5},
+   "expected": [
+      {"user_id": 9, "session_id": 1, "start": "2024-03-03 08:00:00", "end": "2024-03-03 08:04:59", "events": 2},
+      {"user_id": 9, "session_id": 2, "start": "2024-03-03 08:10:00", "end": "2024-03-03 08:14:00", "events": 2},
+      {"user_id": 9, "session_id": 3, "start": "2024-03-03 08:20:00", "end": "2024-03-03 08:20:00", "events": 1}]},
+  {"name": "single event", "input": {"events": [{"user_id": 3, "ts": "2024-04-04 04:04:04"}], "gap_minutes": 30},
+   "expected": [{"user_id": 3, "session_id": 1, "start": "2024-04-04 04:04:04", "end": "2024-04-04 04:04:04", "events": 1}]},
+  {"name": "empty", "input": {"events": [], "gap_minutes": 30}, "expected": []},
+  {"name": "session spanning midnight", "input": {"events": [
+      {"user_id": 1, "ts": "2024-05-05 23:50:00"},
+      {"user_id": 1, "ts": "2024-05-06 00:10:00"},
+      {"user_id": 1, "ts": "2024-05-06 00:39:00"}], "gap_minutes": 30},
+   "expected": [{"user_id": 1, "session_id": 1, "start": "2024-05-05 23:50:00", "end": "2024-05-06 00:39:00", "events": 3}]}
+]

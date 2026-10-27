@@ -1,0 +1,15 @@
+{
+  "id": "top-earners-per-department",
+  "title": "Top 2 Earners per Department (with Ties)",
+  "difficulty": "medium",
+  "order": 4,
+  "tags": ["window", "dense_rank", "qualify", "top-n-per-group"],
+  "order_matters": false,
+  "dataset_names": ["Example", "Three-way ties, singletons, NULL salary"],
+  "time_limit_s": 10,
+  "hints": [
+    "Top-N per group means a ranking window partitioned by department.",
+    "ROW_NUMBER drops tied employees, RANK leaves gaps (1,1,3). DENSE_RANK gives 1,1,2 which is what 'top two salary levels' needs.",
+    "Exclude NULL salaries before ranking, otherwise they take part in the ordering."
+  ]
+}

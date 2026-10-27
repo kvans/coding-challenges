@@ -1,0 +1,14 @@
+{
+  "id": "merge-intervals",
+  "title": "Merge Intervals",
+  "difficulty": "medium",
+  "order": 1,
+  "tags": ["array", "sorting", "intervals", "classic"],
+  "function_name": "merge_intervals",
+  "time_limit_s": 5,
+  "hints": [
+    "Sort by start. After sorting, any interval that overlaps the current merged block must start before (or at) the block's end.",
+    "Keep an output list; compare each interval only with the last merged block, extending its end with max().",
+    "Touching intervals like [1,4] and [4,5] count as overlapping here, so use <= when comparing start to the block end."
+  ]
+}

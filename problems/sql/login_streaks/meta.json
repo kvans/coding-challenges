@@ -1,0 +1,15 @@
+{
+  "id": "login-streaks",
+  "title": "Login Streaks of 3+ Consecutive Days",
+  "difficulty": "medium",
+  "order": 5,
+  "tags": ["gaps-and-islands", "window", "row_number", "dates"],
+  "order_matters": false,
+  "dataset_names": ["Example", "Month boundaries, leap day, repeated streaks"],
+  "time_limit_s": 10,
+  "hints": [
+    "Deduplicate to one row per (user_id, login_date) first; several logins on the same day must not break or inflate a streak.",
+    "Gaps-and-islands trick: login_date minus ROW_NUMBER() (per user, ordered by date) is constant within a run of consecutive days.",
+    "Group by user and that constant, take MIN/MAX/COUNT, keep groups with COUNT >= 3."
+  ]
+}

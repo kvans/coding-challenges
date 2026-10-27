@@ -1,0 +1,15 @@
+{
+  "id": "daily-active-users",
+  "title": "Daily Active Users",
+  "difficulty": "easy",
+  "order": 1,
+  "tags": ["aggregation", "distinct", "dates"],
+  "order_matters": false,
+  "dataset_names": ["Base events", "Duplicates and late-night activity"],
+  "time_limit_s": 10,
+  "hints": [
+    "A user who fires ten events in a day should count once. Which aggregate gives you that?",
+    "`event_ts` is a TIMESTAMP. Cast it to a DATE (or use `date_trunc('day', ...)`) before grouping.",
+    "Days with no events should simply be absent from the output; no calendar table needed."
+  ]
+}

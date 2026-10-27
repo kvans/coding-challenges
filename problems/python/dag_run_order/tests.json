@@ -1,0 +1,13 @@
+[
+  {"name": "example", "input": {"tasks": {"report": ["agg_sales", "agg_users"], "agg_sales": ["clean"], "agg_users": ["clean"], "clean": ["raw"], "raw": [], "audit": []}},
+   "expected": ["audit", "raw", "clean", "agg_sales", "agg_users", "report"]},
+  {"name": "linear chain", "input": {"tasks": {"load": ["extract"], "extract": [], "transform": ["load"]}}, "expected": ["extract", "load", "transform"]},
+  {"name": "diamond", "input": {"tasks": {"a": [], "b": ["a"], "c": ["a"], "d": ["b", "c"]}}, "expected": ["a", "b", "c", "d"]},
+  {"name": "independent tasks alphabetical", "input": {"tasks": {"z": [], "m": [], "a": []}}, "expected": ["a", "m", "z"]},
+  {"name": "implicit dependency task", "input": {"tasks": {"b": ["a"]}}, "expected": ["a", "b"]},
+  {"name": "cycle", "input": {"tasks": {"a": ["b"], "b": ["a"], "c": []}}, "expected": null},
+  {"name": "self loop", "input": {"tasks": {"a": ["a"]}}, "expected": null},
+  {"name": "cycle hidden behind valid tasks", "input": {"tasks": {"a": [], "b": ["c"], "c": ["b"]}}, "expected": null},
+  {"name": "empty", "input": {"tasks": {}}, "expected": []},
+  {"name": "ready order changes as tasks finish", "input": {"tasks": {"x": ["b"], "b": ["a"], "a": [], "c": [], "y": ["c"]}}, "expected": ["a", "b", "c", "x", "y"]}
+]

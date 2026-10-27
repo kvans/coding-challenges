@@ -1,0 +1,15 @@
+{
+  "id": "merge-k-sorted-streams",
+  "title": "Merge K Sorted Streams",
+  "difficulty": "hard",
+  "order": 1,
+  "tags": ["heap", "iterators", "external-sort", "classic"],
+  "function_name": "merge_sorted_streams",
+  "iter_args": ["streams"],
+  "time_limit_s": 5,
+  "hints": [
+    "Keep one element per stream in a min-heap. Pop the smallest, then pull the next element from the stream it came from.",
+    "Push tuples (value, stream_index) so ties are broken deterministically and you know which iterator to advance.",
+    "Use next(it, sentinel) to detect exhausted streams. Streams can be empty from the start."
+  ]
+}

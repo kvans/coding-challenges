@@ -1,0 +1,14 @@
+{
+  "id": "dag-run-order",
+  "title": "Pipeline DAG Run Order",
+  "difficulty": "hard",
+  "order": 3,
+  "tags": ["graph", "topological-sort", "heap", "orchestration"],
+  "function_name": "pipeline_run_order",
+  "time_limit_s": 5,
+  "hints": [
+    "Kahn's algorithm: compute in-degree (number of unfinished dependencies) for every task; tasks with in-degree 0 are ready.",
+    "Use a min-heap for the ready set so that among ready tasks the alphabetically smallest runs first.",
+    "If you finish and the output has fewer tasks than the graph, the leftover tasks form a cycle: return None."
+  ]
+}

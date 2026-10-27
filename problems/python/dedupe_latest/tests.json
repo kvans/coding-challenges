@@ -1,0 +1,36 @@
+[
+  {"name": "example", "input": {"records": [
+      {"customer_id": 2, "email": "b@x.com", "updated_at": "2024-05-01 10:00:00"},
+      {"customer_id": 1, "email": "a@x.com", "updated_at": "2024-05-01 09:00:00"},
+      {"customer_id": 2, "email": "b2@x.com", "updated_at": "2024-05-02 08:00:00"},
+      {"customer_id": 1, "email": "old@x.com", "updated_at": "2024-04-30 09:00:00"}],
+    "key": "customer_id", "ts_field": "updated_at"},
+   "expected": [
+      {"customer_id": 1, "email": "a@x.com", "updated_at": "2024-05-01 09:00:00"},
+      {"customer_id": 2, "email": "b2@x.com", "updated_at": "2024-05-02 08:00:00"}]},
+  {"name": "tie goes to the later record", "input": {"records": [
+      {"id": 7, "v": "first", "ts": "2024-01-01 00:00:00"},
+      {"id": 7, "v": "second", "ts": "2024-01-01 00:00:00"}],
+    "key": "id", "ts_field": "ts"},
+   "expected": [{"id": 7, "v": "second", "ts": "2024-01-01 00:00:00"}]},
+  {"name": "single record", "input": {"records": [{"id": 1, "ts": "2024-01-01 00:00:00"}], "key": "id", "ts_field": "ts"},
+   "expected": [{"id": 1, "ts": "2024-01-01 00:00:00"}]},
+  {"name": "empty", "input": {"records": [], "key": "id", "ts_field": "ts"}, "expected": []},
+  {"name": "older record arrives last", "input": {"records": [
+      {"sku": "B", "price": 3, "ts": "2024-02-01 00:00:00"},
+      {"sku": "A", "price": 9, "ts": "2024-03-01 00:00:00"},
+      {"sku": "B", "price": 2, "ts": "2024-01-15 00:00:00"},
+      {"sku": "A", "price": 8, "ts": "2024-02-28 23:59:59"}],
+    "key": "sku", "ts_field": "ts"},
+   "expected": [
+      {"sku": "A", "price": 9, "ts": "2024-03-01 00:00:00"},
+      {"sku": "B", "price": 3, "ts": "2024-02-01 00:00:00"}]},
+  {"name": "many versions of one key", "input": {"records": [
+      {"id": 1, "n": 1, "ts": "2024-01-01 00:00:01"},
+      {"id": 1, "n": 2, "ts": "2024-01-01 00:00:05"},
+      {"id": 1, "n": 3, "ts": "2024-01-01 00:00:03"},
+      {"id": 1, "n": 4, "ts": "2024-01-01 00:00:05"},
+      {"id": 1, "n": 5, "ts": "2024-01-01 00:00:04"}],
+    "key": "id", "ts_field": "ts"},
+   "expected": [{"id": 1, "n": 4, "ts": "2024-01-01 00:00:05"}]}
+]

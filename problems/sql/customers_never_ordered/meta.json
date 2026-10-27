@@ -1,0 +1,15 @@
+{
+  "id": "customers-never-ordered",
+  "title": "Customers Who Never Ordered",
+  "difficulty": "easy",
+  "order": 3,
+  "tags": ["anti-join", "null-handling", "exists"],
+  "order_matters": false,
+  "dataset_names": ["Example", "Guest orders with NULL customer_id"],
+  "time_limit_s": 10,
+  "hints": [
+    "This is an anti-join: customers with no matching row in orders.",
+    "LEFT JOIN ... WHERE o.order_id IS NULL, or NOT EXISTS, both work.",
+    "If you used NOT IN, check what happens when orders.customer_id contains NULL. The second dataset has guest orders."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "two-sum",
+  "title": "Two Sum",
+  "difficulty": "easy",
+  "order": 1,
+  "tags": ["array", "hashmap", "classic"],
+  "function_name": "two_sum",
+  "time_limit_s": 5,
+  "hints": [
+    "A brute-force double loop is O(n^2). Can you check whether the complement (target - x) has already been seen?",
+    "Store each value's index in a dict as you scan. One pass is enough.",
+    "Insert into the dict only after checking for the complement, so an element never pairs with itself."
+  ]
+}

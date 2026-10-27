@@ -1,0 +1,6 @@
+CREATE TABLE clicks (click_id INTEGER, user_id INTEGER, click_ts TIMESTAMP);
+INSERT INTO clicks VALUES
+(1, 1, '2024-06-01 10:00:00'),
+(2, 1, '2024-06-01 10:20:00'),
+(3, 1, '2024-06-01 11:30:00'),
+(4, 2, '2024-06-01 09:00:00');

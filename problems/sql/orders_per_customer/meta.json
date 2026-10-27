@@ -1,0 +1,15 @@
+{
+  "id": "orders-per-customer",
+  "title": "Orders per Customer Including Zero",
+  "difficulty": "easy",
+  "order": 4,
+  "tags": ["left-join", "aggregation", "coalesce", "null-handling"],
+  "order_matters": false,
+  "dataset_names": ["Example", "NULL amounts and guest orders"],
+  "time_limit_s": 10,
+  "hints": [
+    "Start from customers and LEFT JOIN orders so customers without orders survive.",
+    "COUNT(*) counts the customer row itself even when there is no order. Count a column from the orders table instead.",
+    "SUM over no rows (or only NULLs) is NULL; wrap it in COALESCE(..., 0)."
+  ]
+}

@@ -1,0 +1,9 @@
+[
+  {"name": "example 1", "input": {"nums": [2, 7, 11, 15], "target": 9}, "expected": [0, 1]},
+  {"name": "example 2", "input": {"nums": [3, 2, 4], "target": 6}, "expected": [1, 2]},
+  {"name": "duplicate values", "input": {"nums": [3, 3], "target": 6}, "expected": [0, 1]},
+  {"name": "negatives", "input": {"nums": [-1, -2, -3, -4, -5], "target": -8}, "expected": [2, 4]},
+  {"name": "answer at the end", "input": {"nums": [1, 5, 9, 14, 20, 26], "target": 46}, "expected": [4, 5]},
+  {"name": "zero target", "input": {"nums": [4, -4, 2, 0], "target": 0}, "expected": [0, 1]},
+  {"name": "large input", "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 1000], "target": 1099}, "expected": [98, 99]}
+]
